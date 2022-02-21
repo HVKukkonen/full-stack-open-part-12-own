@@ -1,0 +1,31 @@
+@startuml
+package "Backend" {
+  HTTP -> [URLS]
+  package "Analysis" {
+    [URLS] -> [View: Analysis page]
+    [Speech model] -> [View: Analysis page]
+    [Speech model] <. [View: Analysis page]: Params
+    [View: Analysis page] <. [Model: Analysis]
+    [Model: Analysis] #Grey
+    note top of [Model: Analysis] : Optional
+    [View: Analysis page] -> [Model: Record]
+  }
+}
+
+package "Frontend" {
+  package "Dash" {
+    [Graph]
+    [View: Analysis page] -> [Pronunciation]
+    [View: Analysis page] -> [Recording]
+  }
+  [Sound stream] <- [Recording]
+  [Sound stream] -> [Graph]
+  [Sound stream] -> [View: Analysis page]
+}
+
+database "Database" {
+  [Model: Record] -> [Recordings]
+  [Model: Analysis] <-- [Model params]
+  [Model params] #Grey
+}
+@enduml

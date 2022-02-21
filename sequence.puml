@@ -1,0 +1,4 @@
+@startuml
+client -> server: POST: speech [mp3]
+server --> client: metrics
+@enduml
