@@ -60,6 +60,8 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+# own
+settings_prod.py
 
 # Flask stuff:
 instance/
