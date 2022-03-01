@@ -1,16 +1,14 @@
 version: '3'
 services:
-  plantuml-server:
-    image: plantuml/plantuml-server
-    container_name: plantuml-local-server
-    ports:
-      - 8080:8080
   app:
-    image: django-app
-    command: python3 ./backend/manage.py runserver 0.0.0.0:8000
+    image: django-app-prod
+    build:
+      context: ./src
+    command: gunicorn --bind 0.0.0.0:8000 --workers 3 backend.backend.wsgi:application
+    environment:
+      # separate settings file with more restrictive security settings
+      - DJANGO_SETTINGS_MODULE=backend.backend.settings_prod
     ports:
       - 8000:8000
     devices:
       - /dev/snd:/dev/snd
-    volumes:
-      - ./src:/usr/src/app

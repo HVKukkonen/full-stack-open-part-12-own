@@ -11,6 +11,6 @@ RUN apt-get install libportaudio2 -y
 RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir --no-deps -r requirements.txt
 
-# chown to non-root user then copy all files in source dir to dest
-COPY --chown=1000:1000 . .
+COPY . .
+
 # CMD [ "python3", "./backend/manage.py", "runserver" ]
