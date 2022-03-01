@@ -31,9 +31,9 @@ urlpatterns += [
 ]
 
 # redirect root
-# urlpatterns += [
-#   path('', RedirectView.as_view(url='analyser/', permanent=True))
-# ]
+urlpatterns += [
+  path('', RedirectView.as_view(url='analyser/', permanent=True))
+]
 
 # static() adds url mapping to serve static files during development (only)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
